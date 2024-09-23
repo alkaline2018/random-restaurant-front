@@ -1,26 +1,34 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="app">
+    <h1>다나님께 보여주는 랜덤 식당 추천</h1>
+    <LocationMap @locationSelected="updateLocation" />
+    <label for="distance">반경 거리(미터): </label>
+    <input type="number" id="distance" v-model="distance" />
+    <RestaurantRecommendations :latitude="latitude" :longitude="longitude" />
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import LocationMap from './components/LocationMap.vue';
+import RestaurantRecommendations from './components/RestaurantRecommendations.vue';
 
 export default {
-  name: 'App',
+  data() {
+    return {
+      latitude: 37.5221835,
+      longitude: 126.92002,
+      distance: 600, // 기본 반경 거리 설정
+    };
+  },
   components: {
-    HelloWorld
-  }
-}
+    LocationMap,
+    RestaurantRecommendations,
+  },
+  methods: {
+    updateLocation({lat, lon}) {
+      this.latitude = lat;
+      this.longitude = lon;
+    },
+  },
+};
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
