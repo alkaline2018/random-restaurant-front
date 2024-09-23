@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <h1>다나님께 보여주는 랜덤 식당 추천</h1>
+    <h1>랜덤 식당 추천</h1>
     <LocationMap @locationSelected="updateLocation" />
     <label for="distance">반경 거리(미터): </label>
     <input type="number" id="distance" v-model="distance" />
