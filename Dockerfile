@@ -1,5 +1,5 @@
 # 베이스 이미지로 Node.js LTS 사용
-FROM node:lts-alpine
+FROM node:18-alpine
 
 # pnpm 설치
 RUN npm install -g pnpm
@@ -18,6 +18,9 @@ COPY . .
 
 # 포트 설정
 EXPOSE 8080
+
+# 환경 변수 설정
+ENV NODE_ENV development
 
 # 개발 서버 실행
 CMD ["pnpm", "run", "serve"]
